@@ -21,16 +21,25 @@ var special = {	8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl",
 
 function beeline(exceptions){
 
+
     if (!exceptions)
 	var exceptions = new Array();
 
     // Remove the other keybindings
-    $(document).keypress(function(e){ return false; });
-    $(document).keyup(function(e){ return false; });
-
+    $(document).keypress(function(e){ check_keys(e); });
+    $(document).keyup(function(e){ check_keys(e); });
+    $(document).keydown(function(e) { handler(e); });
+    
     // Capture any keydown and search for any links/buttons which have 
     // an accesskey the same.
-    $(document).keydown(function(e) {
+
+    function check_keys(e){
+	e.preventDefault()
+	return false;
+    }
+
+    function handler(e){
+
 	var modif = '';
 	var accesskey= new String();
 	
@@ -55,7 +64,7 @@ function beeline(exceptions){
 	$('a.ajax[accesskey='+accesskey+']').click();
 
 	// Build an array of all accesskeys
-	var keys = new Array();
+	var keys = [];
 
 	$('a.ajax[accesskey]').each(function(e){
 	    keys.push($(this).attr('accesskey'));
@@ -72,6 +81,6 @@ function beeline(exceptions){
 	};
 
 
-    });
-  };
+    }; //handler
+}; //beeline
 
