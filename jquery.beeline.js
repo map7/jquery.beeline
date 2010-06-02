@@ -19,6 +19,8 @@ var special = {	8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl",
 		121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 
 		191: "/", 224: "meta"};
 
+var keys = [];
+
 function beeline(exceptions){
 
 
@@ -33,27 +35,62 @@ function beeline(exceptions){
     // Capture any keydown and search for any links/buttons which have 
     // an accesskey the same.
 
+    // need to use keyCode instead of which on keypress.
     function check_keys(e){
-	e.preventDefault()
-	return false;
-    }
+	accesskey=get_accesskey(e);
 
-    function handler(e){
-
-	var modif = '';
-	var accesskey= new String();
+	console.info("keys array total: " + keys.length );
+	console.log("keyCode: " + e.keyCode );
+	console.log("accesskey: " + accesskey );
+	console.log("e.which: " + e.which );
+	console.log("e.keyCode: " + e.keyCode );
 	
-	str = String.fromCharCode(e.which);
+	keyOccurances = keys.indexOf(accesskey);
+
+	// Check array for the key hit
+	if (keys.indexOf(accesskey) >= 0){
+	    console.info("Key taken: " + accesskey);
+	    e.preventDefault();
+	    return false;
+	}else{
+	    console.info("Key NOT taken: " + keyOccurances );
+	    
+	    var i;
+	    for(i=0; i < keys.length; i++){
+		console.log("key = " + keys[i]);
+	    }
+
+	    return true;
+	};
+    };
+
+    function get_accesskey(e){
+	var modif = '';
 
 	if (e.ctrlKey) { modif = 'ctrl+'; }
 	if (e.altKey) { modif = 'alt+'; }
+
+	code = e.which;
+	if (code === 0) { code = e.keyCode; }
 	
-	if (special[e.which]){
-	    accesskey = special[e.which]
+
+	if (special[code]){
+	    accesskey = special[code]
 	}else{
+	    str = String.fromCharCode(code);
 	    accesskey = modif+str;
 	    accesskey = accesskey.toLowerCase();
 	};
+
+	return accesskey;
+    };
+    
+    function handler(e){
+
+
+	var accesskey= new String();
+	
+	accesskey=get_accesskey(e);
 	
 	// Check if we have any exceptions for shortcut keys within an input field.
 	if (exceptions.indexOf(accesskey) == -1)
@@ -64,22 +101,15 @@ function beeline(exceptions){
 	$('a.ajax[accesskey='+accesskey+']').click();
 
 	// Build an array of all accesskeys
-	var keys = [];
+	keys = [];
 
 	$('a.ajax[accesskey]').each(function(e){
 	    keys.push($(this).attr('accesskey'));
 	});
 
-	$('#content').append("keys array total: " + keys.length + "<br />");
+	console.log("keys array total: " + keys.length );
 	
-	// Check array for the key hit
-	if (keys.indexOf(accesskey) >= 0){
-	    e.preventDefault();
-	    return false;
-	}else{
-	    return true;
-	};
-
+	check_keys(e);
 
     }; //handler
 }; //beeline
