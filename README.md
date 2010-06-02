@@ -9,12 +9,12 @@ Based upon: http://github.com/jeresig/jquery.hotkeys
 #Use
 
 Add the following to your $(document).ready(function(event)) area:
-  beeline();
+  $(document).beeline();
 
 #Exceptions
 
 If you would like to allow some keystrokes within text fields then you can add them as exceptions to the beeline function call like so:
-  beeline(['ctrl+b','f1','f2']);
+  $(document).beeline(['ctrl+b','f1','f2']);
 
 
 #Note
