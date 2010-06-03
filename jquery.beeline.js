@@ -37,28 +37,14 @@
 	    // need to use keyCode instead of which on keypress.
 	    function check_keys(e){
 		accesskey=get_accesskey(e);
-
-		console.info("keys array total: " + keys.length );
-		console.log("keyCode: " + e.keyCode );
-		console.log("accesskey: " + accesskey );
-		console.log("e.which: " + e.which );
-		console.log("e.keyCode: " + e.keyCode );
 		
 		keyOccurances = keys.indexOf(accesskey);
 
 		// Check array for the key hit
 		if (keys.indexOf(accesskey) >= 0){
-		    console.info("Key taken: " + accesskey);
 		    e.preventDefault();
 		    return false;
 		}else{
-		    console.info("Key NOT taken: " + keyOccurances );
-		    
-		    var i;
-		    for(i=0; i < keys.length; i++){
-			console.log("key = " + keys[i]);
-		    }
-
 		    return true;
 		};
 	    };
@@ -105,8 +91,6 @@
 		$('a.ajax[accesskey]').each(function(e){
 		    keys.push($(this).attr('accesskey'));
 		});
-
-		console.log("keys array total: " + keys.length );
 		
 		check_keys(e);
 
