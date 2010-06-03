@@ -21,10 +21,13 @@
 
     var keys = [];
 
-    $.fn.beeline = function(exceptions){
+    $.fn.beeline = function(options){
 	$(this).ready(function(event){
-	    if (!exceptions)
-		var exceptions = new Array();
+
+	    field_keys = options['field_keys'];
+
+	    if (!field_keys)
+		var field_keys = new Array();
 
 	    // Remove the other keybindings
 	    $(this).keypress(function(e){ check_keys(e); });
@@ -77,8 +80,8 @@
 		
 		accesskey=get_accesskey(e);
 		
-		// Check if we have any exceptions for shortcut keys within an input field.
-		if (exceptions.indexOf(accesskey) == -1)
+		// Check if we have any field_keys for shortcut keys within an input field.
+		if (field_keys.indexOf(accesskey) == -1)
 		    if (/textarea|select/i.test( e.target.nodeName) || e.target.type === "text") 
 			return;
 		
