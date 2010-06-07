@@ -21,9 +21,16 @@
 
     var keys = [];
 
+    $.beeline = {
+	defaults: {
+	    field_keys: []
+	}
+    }
+
     $.fn.beeline = function(options){
 	$(this).ready(function(event){
 
+	    options = $.extend($.beeline.defaults, options);
 	    field_keys = options['field_keys'];
 
 	    if (!field_keys)
