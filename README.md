@@ -6,6 +6,10 @@ Beeline means take the most direct route.  In the case of application developmen
 
 Based upon: http://github.com/jeresig/jquery.hotkeys
 
+#Requires
+
+jquery-1.4.2
+
 #Use
 
 Add the following to your $(document).ready(function(event)) area:
