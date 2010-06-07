@@ -58,9 +58,12 @@
 		if (e.ctrlKey) { modif = 'ctrl+'; }
 		if (e.altKey) { modif = 'alt+'; }
 
-		code = e.which;
-		if (code === 0) { code = e.keyCode; }
-		
+		if (e.which === 0 && e.keyCode > 0)
+		    code = e.keyCode;
+		else if (e.which > 0 && e.keyCode === 0)
+		    code = 0;
+		else
+		    code = e.which;
 
 		if (special[code]){
 		    accesskey = special[code]
