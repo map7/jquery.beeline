@@ -8,6 +8,7 @@
  *
 */
 (function($){
+
     // Hold special keys
     var special = {8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 
 		   18: "alt", 19: "pause", 20: "capslock", 27: "esc", 32: "space", 
@@ -46,8 +47,8 @@
 
 	    // need to use keyCode instead of which on keypress.
 	    function check_keys(e){
+
 		accesskey=get_accesskey(e);
-		
 		keyOccurances = keys.indexOf(accesskey);
 
 		// Check array for the key hit
@@ -85,11 +86,11 @@
 	    
 	    function handler(e){
 
-
 		var accesskey= new String();
-		
 		accesskey=get_accesskey(e);
-		
+
+		console.log("beeline, keyCode: " + e.keyCode + ", accesskey: " + accesskey);
+
 		// Check if we have any field_keys for shortcut keys within an input field.
 		if (field_keys.indexOf(accesskey) == -1)
 		    if (/textarea|select/i.test( e.target.nodeName) || e.target.type === "text") 
