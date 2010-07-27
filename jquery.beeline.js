@@ -89,7 +89,7 @@
 		var accesskey= new String();
 		accesskey=get_accesskey(e);
 
-		console.log("beeline, keyCode: " + e.keyCode + ", accesskey: " + accesskey);
+//		console.log("beeline, keyCode: " + e.keyCode + ", accesskey: " + accesskey);
 
 		// Check if we have any field_keys for shortcut keys within an input field.
 		if (field_keys.indexOf(accesskey) == -1)
