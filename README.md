@@ -33,6 +33,16 @@ If you would like to allow some keystrokes within text fields then you can add t
    $(document).beeline({field_keys: ['ctrl+b','f1','f2']});
 
 
+#No layout
+  Add the following to your application_controller
+   
+  # If the request is ajax then don't include a layout
+  layout :no_xhr_layout
+  
+  def no_xhr_layout
+    request.xhr? ? false : 'application'
+  end
+
 #Note
 Key combinations can only be put on links/buttons which have been binded to a click event.
 
