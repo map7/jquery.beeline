@@ -13,12 +13,15 @@ jquery-1.4.2
 #Use
 
 Add the following to your $(document).ready(function(event)) area:
+
     $(document).beeline();
 
 Your links must have the class set as 'ajax' here is a typical link within a Rails app:
+
      <%= link_to "Products", products_path, :class => 'ajax', :target => 'content', :accesskey => 'f1' %>
 
 This must have the following in your $(document).ready area to work
+
     // Ajax navigation
     $('a.ajax').live('click', function(e) { 
 	e.preventDefault();
@@ -30,6 +33,7 @@ This must have the following in your $(document).ready area to work
 #Field Key Exceptions
 
 If you would like to allow some keystrokes within text fields then you can add them as exceptions to the beeline function call like so:
+
    $(document).beeline({field_keys: ['ctrl+b','f1','f2']});
 
 
