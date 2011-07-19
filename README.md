@@ -34,7 +34,7 @@ This must have the following in your $(document).ready area to work
 
 If you would like to allow some keystrokes within text fields then you can add them as exceptions to the beeline function call like so:
 
-   $(document).beeline({field_keys: ['ctrl+b','f1','f2']});
+    $(document).beeline({field_keys: ['ctrl+b','f1','f2']});
 
 
 #No layout
