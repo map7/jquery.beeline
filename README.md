@@ -2,7 +2,7 @@
 
 **jQuery Beeline** 
 
-Beeline means take the most direct route.  In the case of application development it's faster and more direct to use the keyboard than the mouse.
+Beeline means take the most direct route.  It's keyboard naviagation for web applications.
 
 Based upon: http://github.com/jeresig/jquery.hotkeys
 
